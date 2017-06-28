@@ -17,20 +17,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with AMTSIM.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <memory>
-#include <boost/graph/adjacency_list.hpp>
-#include "Point.h"
 namespace UTTRI
 {
-    class RoadLane
-    {
-        int32 RoadTypeIndex;
-    };
-
-    class Network
+    class Point
     {
     public:
-        boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS, Point, RoadLane> Graph;
-        std::unique_ptr<Network> LoadNetwork(std::string path);
+        double X;
+        double Y;
     };
 }

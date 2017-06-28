@@ -20,6 +20,7 @@ along with AMTSIM.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <string>
 #include "VehicleType.h"
+#include "RoadType.h"
 namespace UTTRI
 {
     class Configuration
@@ -27,6 +28,8 @@ namespace UTTRI
     public:
         // The different vehicle types in the simulation
         static std::vector<VehicleType> VehicleTypes;
+        // The different vehicle types in the simulation
+        static std::vector<RoadType> RoadTypes;
         // the vehicles in the simulation
         static std::vector<Vehicle> Vehicles;
         // The path to the network file

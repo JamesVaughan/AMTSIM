@@ -30,6 +30,7 @@ namespace UTTRI
     double Configuration::TimeStep = 0.0;
     double Configuration::EndTime = 0.0;
     std::vector<VehicleType> Configuration::VehicleTypes;
+    std::vector<RoadType> Configuration::RoadTypes;
     std::vector<Vehicle> Configuration::Vehicles;
     std::string Configuration::NetworkPath;
 
