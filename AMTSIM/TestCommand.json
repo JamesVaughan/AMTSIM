@@ -1,5 +1,6 @@
 {
     "VehicleTypes": [],
-    "NetworkPath": "TestNetwork.nwk",
-    "TimeStep": 0.1
+    "NetworkPath": "TestNetwok.nwk",
+    "TimeStep": 0.1,
+    "EndTime": 86400
 }

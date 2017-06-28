@@ -29,5 +29,7 @@ namespace UTTRI
         float Acceleration;
         float Distance;
         int Type;
+        int64 VehicleInFront;
+        int64 VehicleBehind;
     };
 }

@@ -28,8 +28,30 @@ using namespace boost::property_tree;
 namespace UTTRI
 {
     double Configuration::TimeStep = 0.0;
+    double Configuration::EndTime = 0.0;
     std::vector<VehicleType> Configuration::VehicleTypes;
+    std::vector<Vehicle> Configuration::Vehicles;
     std::string Configuration::NetworkPath;
+
+    template <class T>
+    bool LoadValue(string name, T &val, ptree &pt, string elementPath)
+    {
+        auto elementResult = pt.get_child_optional(elementPath);
+        if (!elementResult.is_initialized())
+        {
+            cout << "The path '"<< elementPath << "' was not found in the configuration!" << endl;
+            return false;
+        }
+        auto element = elementResult.value();
+        auto result = element.get_value_optional<T>();
+        if (result.is_initialized())
+        {
+            val = result.value();
+            return true;
+        }
+        cout << name << " did not contain compatible data!" << endl;
+        return false;
+    }
 
     void LoadVehicleTypes(basic_ptree<string, string> &vehicleRoot)
     {
@@ -43,11 +65,6 @@ namespace UTTRI
     void LoadNetworkPath(basic_ptree<string, string> &networkPathRoot)
     {
         Configuration::NetworkPath = networkPathRoot.get_value<string>();
-    }
-
-    void LoadTimeStep(basic_ptree<string, string> &timeStepRoot)
-    {
-        Configuration::TimeStep = timeStepRoot.get_value<double>();
     }
 
     bool Configuration::Load(string &fileName)
@@ -72,7 +89,11 @@ namespace UTTRI
         read_json(buffer, pt);
         LoadVehicleTypes(pt.get_child("VehicleTypes"));
         LoadNetworkPath(pt.get_child("NetworkPath"));
-        LoadTimeStep(pt.get_child("TimeStep"));
+        if (!(LoadValue("TimeStep", Configuration::TimeStep, pt, "TimeStep")
+            && LoadValue("EndTime", Configuration::EndTime, pt, "EndTime")))
+        {
+            return false;
+        }
         return true;
     }
 }

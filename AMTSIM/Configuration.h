@@ -25,10 +25,21 @@ namespace UTTRI
     class Configuration
     {
     public:
+        // The different vehicle types in the simulation
         static std::vector<VehicleType> VehicleTypes;
+        // the vehicles in the simulation
+        static std::vector<Vehicle> Vehicles;
+        // The path to the network file
         static std::string NetworkPath;
+        // The path to the demand to place on the network
         static std::string DemandPath;
+        // The amount of time that the simulation increases by per step
         static double TimeStep;
+        // The amount of time that has occurred in the simulation (seconds)
+        static double CurrentTime;
+        // The last time unit for the simulation
+        static double EndTime;
+        // The function to load the configuration
         static bool Load(std::string &configurationFile);
     };
 }
