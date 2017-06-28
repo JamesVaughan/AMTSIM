@@ -25,5 +25,6 @@ namespace UTTRI
         // Acceleration limit
         double AccelerationLimit;
         double BreakLimit;
+        double Length;
     };
 }
